@@ -209,7 +209,7 @@
         }
 
         .mission-content {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(217, 70, 239, 0.08);
             border: 1px solid rgba(217, 70, 239, 0.2);
             border-radius: 20px;
             padding: 3rem;
@@ -242,7 +242,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(217, 70, 239, 0.08);
             border: 1px solid rgba(217, 70, 239, 0.2);
             backdrop-filter: blur(20px);
             padding: 2rem;
@@ -288,9 +288,84 @@
             z-index: 2;
         }
 
+        /* Board of Directors Section */
+        .board {
+            background: linear-gradient(135deg, rgba(217, 70, 239, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .director-card {
+            text-align: center;
+            animation: fadeInUp 0.8s ease;
+            transition: all 0.3s ease;
+        }
+
+        .director-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .director-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            background: rgba(217, 70, 239, 0.12);
+            border: 1px solid rgba(217, 70, 239, 0.3);
+        }
+
+        .director-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .director-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(217, 70, 239, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 3rem;
+        }
+
+        .director-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .director-title {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .director-quote {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-style: italic;
+            background: rgba(217, 70, 239, 0.06);
+            border-left: 3px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
         /* Testimonials Section */
         .testimonials {
-            background: linear-gradient(135deg, rgba(217, 70, 239, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(217, 70, 239, 0.05) 100%);
         }
 
         .testimonials-grid {
@@ -300,7 +375,7 @@
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(217, 70, 239, 0.08);
             border: 1px solid rgba(217, 70, 239, 0.2);
             border-radius: 15px;
             padding: 2rem;
@@ -361,7 +436,7 @@
         }
 
         .form-box {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(217, 70, 239, 0.08);
             border: 1px solid rgba(217, 70, 239, 0.2);
             border-radius: 15px;
             padding: 2.5rem;
@@ -385,7 +460,7 @@
         .form-group input[type="email"] {
             width: 100%;
             padding: 0.8rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(217, 70, 239, 0.1);
             border: 1px solid rgba(217, 70, 239, 0.3);
             border-radius: 8px;
             color: var(--text-light);
@@ -396,7 +471,7 @@
         .form-group input[type="text"]:focus,
         .form-group input[type="email"]:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(217, 70, 239, 0.15);
             border-color: var(--primary);
             box-shadow: 0 0 20px rgba(217, 70, 239, 0.2);
         }
@@ -596,6 +671,7 @@
         <ul>
             <li><a href="#mission">Mission</a></li>
             <li><a href="#classes">Classes</a></li>
+            <li><a href="#board">Board</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact" class="cta-button">Join Us</a></li>
         </ul>
@@ -637,6 +713,37 @@
         </div>
         <div style="text-align: center;">
             <p style="color: var(--text-muted); font-size: 0.95rem;">Contact us for more details about our Strings program, Piano instruction, and volunteer opportunities.</p>
+        </div>
+    </section>
+
+    <!-- Board of Directors Section -->
+    <section id="board" class="section board">
+        <h2 class="section-title">Board of Directors</h2>
+        <div class="board-grid">
+            <div class="director-card">
+                <div class="director-image">
+                    <div class="director-placeholder">🎹</div>
+                </div>
+                <div class="director-name">Rashawn King</div>
+                <div class="director-title">President & CEO</div>
+                <div class="director-quote">"I wanted my first project as a model to be with someone I trusted, so I contacted Delora for a specific idea and what I imagined became a reality."</div>
+            </div>
+            <div class="director-card">
+                <div class="director-image">
+                    <div class="director-placeholder">🎼</div>
+                </div>
+                <div class="director-name">Name</div>
+                <div class="director-title">Vice President</div>
+                <div class="director-quote">"We love working with the team because they capture the mission so well. They show the commitment and excellence that defines our school."</div>
+            </div>
+            <div class="director-card">
+                <div class="director-image">
+                    <div class="director-placeholder">🎵</div>
+                </div>
+                <div class="director-name">Name</div>
+                <div class="director-title">Treasurer</div>
+                <div class="director-quote">"Their dedication helps us bring out the human element in our mission. They show our commitment that uplifts the entire organization."</div>
+            </div>
         </div>
     </section>
 
@@ -729,6 +836,7 @@
             <div class="footer-links">
                 <a href="#mission">About</a>
                 <a href="#classes">Classes</a>
+                <a href="#board">Board</a>
                 <a href="#contact">Contact</a>
             </div>
             <p>&copy; 2024 Yudah School of Music. All rights reserved.</p>
@@ -766,7 +874,7 @@
         }, observerOptions);
 
         // Apply animations to elements
-        document.querySelectorAll('.section, .class-card, .testimonial-card').forEach(el => {
+        document.querySelectorAll('.section, .class-card, .director-card, .testimonial-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
