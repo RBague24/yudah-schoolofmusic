@@ -110,7 +110,25 @@
             position: relative;
             overflow: hidden;
             padding-top: 5rem;
-            background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .video-background iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
         }
 
         .hero::before {
@@ -120,9 +138,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(217, 70, 239, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
-            animation: float 8s ease-in-out infinite;
+            background: rgba(15, 10, 26, 0.5);
+            z-index: 1;
         }
 
         @keyframes float {
@@ -132,7 +149,7 @@
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 10;
             text-align: center;
             animation: fadeInUp 1s ease 0.2s both;
         }
@@ -250,6 +267,21 @@
             transition: all 0.4s ease;
             animation: fadeInUp 0.8s ease;
             cursor: pointer;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .class-card video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.6;
         }
 
         .class-card::before {
@@ -279,93 +311,64 @@
             margin-bottom: 1rem;
             color: var(--primary);
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
         .class-card p {
             color: var(--text-muted);
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
-        /* Board of Directors Section */
-        .board {
-            background: linear-gradient(135deg, rgba(217, 70, 239, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
-        }
-
-        .board-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .director-card {
-            text-align: center;
-            animation: fadeInUp 0.8s ease;
-            transition: all 0.3s ease;
-        }
-
-        .director-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .director-image {
+        .class-card-content {
             position: relative;
+            z-index: 10;
+        }
+
+        .map-container {
+            position: relative;
+            z-index: 10;
             width: 100%;
-            aspect-ratio: 1 / 1;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            background: rgba(217, 70, 239, 0.12);
-            border: 1px solid rgba(217, 70, 239, 0.3);
         }
 
-        .director-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .map-container iframe {
+            position: relative;
+            z-index: 10;
         }
 
-        .director-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(217, 70, 239, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 3rem;
-        }
-
-        .director-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-        }
-
-        .director-title {
-            font-size: 1rem;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .director-quote {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--text-muted);
-            font-style: italic;
-            background: rgba(217, 70, 239, 0.06);
-            border-left: 3px solid var(--primary);
-            padding: 1.5rem;
-            border-radius: 8px;
-        }
-
-        /* Testimonials Section */
+/* Testimonials Section */
         .testimonials {
+            position: relative;
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(217, 70, 239, 0.05) 100%);
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 10, 26, 0.6);
+            z-index: 0;
+        }
+
+        .testimonials video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .testimonials .section {
+            position: relative;
+            z-index: 5;
         }
 
         .testimonials-grid {
@@ -667,18 +670,20 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo">Yudah School of Music</div>
+        <a href="index.html" class="logo">Yudah School of Music</a>
         <ul>
-            <li><a href="#mission">Mission</a></li>
-            <li><a href="#classes">Classes</a></li>
-            <li><a href="#board">Board</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="board.html">Board</a></li>
+            <li><a href="donate.html">Donate</a></li>
             <li><a href="#contact" class="cta-button">Join Us</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- <div class="video-background">
+            <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1C6VkgDWDa%2F&show_text=false&width=1000" width="1000" height="562" style="border:none;overflow:hidden;width:100%;height:100%;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div> -->
         <div class="hero-content">
             <h1>Yudah School of Music</h1>
             <p>Changing Lives, One Child, One Instrument at a Time</p>
@@ -703,12 +708,24 @@
         <h2 class="section-title">Classes We Offer</h2>
         <div class="classes-grid">
             <div class="class-card">
-                <h3>New Castle County Classes</h3>
-                <p>Join our programs in New Castle County where students explore strings, piano, and ensemble playing in a supportive, creative environment.</p>
+                <iframe src="https://www.facebook.com/plugins/video.php?href=PASTE_NEWCASTLE_VIDEO_LINK_HERE&show_text=false&width=500" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:15px;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <div class="class-card-content">
+                    <h3>New Castle County Classes</h3>
+                    <p>Join our programs in New Castle County where students explore strings, piano, and ensemble playing in a supportive, creative environment.</p>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps?q=4101+Washington+St,+Wilmington,+DE+19802&output=embed" width="100%" height="250" style="border:0; border-radius: 10px; margin-top: 1.5rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
             </div>
             <div class="class-card">
-                <h3>Kent County Classes</h3>
-                <p>Our Kent County location offers the same excellence and dedication to musical education with flexible scheduling to fit your family's needs.</p>
+                <iframe src="https://www.facebook.com/plugins/video.php?href=PASTE_KENT_VIDEO_LINK_HERE&show_text=false&width=500" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:15px;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <div class="class-card-content">
+                    <h3>Kent County Classes</h3>
+                    <p>Our Kent County location offers the same excellence and dedication to musical education with flexible scheduling to fit your family's needs.</p>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps?q=Dover,+Delaware&output=embed" width="100%" height="250" style="border:0; border-radius: 10px; margin-top: 1.5rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
         <div style="text-align: center;">
@@ -716,41 +733,14 @@
         </div>
     </section>
 
-    <!-- Board of Directors Section -->
-    <section id="board" class="section board">
-        <h2 class="section-title">Board of Directors</h2>
-        <div class="board-grid">
-            <div class="director-card">
-                <div class="director-image">
-                    <div class="director-placeholder">🎹</div>
-                </div>
-                <div class="director-name">Rashawn King</div>
-                <div class="director-title">President & CEO</div>
-                <div class="director-quote">"I wanted my first project as a model to be with someone I trusted, so I contacted Delora for a specific idea and what I imagined became a reality."</div>
-            </div>
-            <div class="director-card">
-                <div class="director-image">
-                    <div class="director-placeholder">🎼</div>
-                </div>
-                <div class="director-name">Name</div>
-                <div class="director-title">Vice President</div>
-                <div class="director-quote">"We love working with the team because they capture the mission so well. They show the commitment and excellence that defines our school."</div>
-            </div>
-            <div class="director-card">
-                <div class="director-image">
-                    <div class="director-placeholder">🎵</div>
-                </div>
-                <div class="director-name">Name</div>
-                <div class="director-title">Treasurer</div>
-                <div class="director-quote">"Their dedication helps us bring out the human element in our mission. They show our commitment that uplifts the entire organization."</div>
-            </div>
-        </div>
-    </section>
-
     <!-- Testimonials Section -->
-    <section id="testimonials" class="section testimonials">
-        <h2 class="section-title">Testimonials</h2>
-        <div class="testimonials-grid">
+    <section id="testimonials" class="testimonials">
+        <div class="video-background">
+            <iframe src="https://www.facebook.com/plugins/video.php?href=PASTE_TESTIMONIALS_VIDEO_LINK_HERE&show_text=false&width=1000" width="1000" height="562" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Testimonials</h2>
+            <div class="testimonials-grid">
             <div class="testimonial-card">
                 <p class="testimonial-text">"Working with Emeka felt like opening a treasure chest of ideas. She listened, experimented, and delivered a transformative learning experience."</p>
                 <div class="testimonial-author">MAYA L.</div>
@@ -766,6 +756,7 @@
                 <div class="testimonial-author">IMAN B.</div>
                 <div class="testimonial-role">Director</div>
             </div>
+        </div>
         </div>
     </section>
 

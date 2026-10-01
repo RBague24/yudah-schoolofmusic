@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board of Directors - Yudah School of Music</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d946ef;
+            --primary-dark: #a6146b;
+            --bg-dark: #0f0a1a;
+            --bg-darker: #0a0512;
+            --accent: #ec4899;
+            --text-light: #ffffff;
+            --text-muted: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 10, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(217, 70, 239, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.6s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 5rem;
+            background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(217, 70, 239, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+        }
+
+        /* Board Section */
+        .board-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .director-card {
+            text-align: center;
+            animation: fadeInUp 0.8s ease;
+            transition: all 0.3s ease;
+        }
+
+        .director-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .director-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            background: rgba(217, 70, 239, 0.12);
+            border: 1px solid rgba(217, 70, 239, 0.3);
+        }
+
+        .director-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .director-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(217, 70, 239, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 3rem;
+        }
+
+        .director-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .director-title {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .director-quote {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-style: italic;
+            background: rgba(217, 70, 239, 0.06);
+            border-left: 3px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 5, 18, 0.8);
+            border-top: 1px solid rgba(217, 70, 239, 0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .board-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">Yudah School of Music</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="board.html">Board</a></li>
+            <li><a href="donate.html">Donate</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Board of Directors</h1>
+            <p>Meet the visionary leaders guiding Yudah School of Music</p>
+        </div>
+    </section>
+
+    <!-- Board Section -->
+    <section class="board-section">
+        <div class="board-grid">
+            <div class="director-card">
+                <div class="director-image">
+                    <div class="director-placeholder">🎹</div>
+                </div>
+                <div class="director-name">Rashawn King</div>
+                <div class="director-title">President & CEO</div>
+                <div class="director-quote">"I wanted my first project as a model to be with someone I trusted, so I contacted Delora for a specific idea and what I imagined became a reality."</div>
+            </div>
+            <div class="director-card">
+                <div class="director-image">
+                    <div class="director-placeholder">🎼</div>
+                </div>
+                <div class="director-name">Name</div>
+                <div class="director-title">Vice President</div>
+                <div class="director-quote">"We love working with the team because they capture the mission so well. They show the commitment and excellence that defines our school."</div>
+            </div>
+            <div class="director-card">
+                <div class="director-image">
+                    <div class="director-placeholder">🎵</div>
+                </div>
+                <div class="director-name">Name</div>
+                <div class="director-title">Treasurer</div>
+                <div class="director-quote">"Their dedication helps us bring out the human element in our mission. They show our commitment that uplifts the entire organization."</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Yudah School of Music</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#mission">Home</a>
+                <a href="index.html#classes">Classes</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <p>&copy; 2024 Yudah School of Music. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animations to elements
+        document.querySelectorAll('.director-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

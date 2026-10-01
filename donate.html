@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Donate - Yudah School of Music</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d946ef;
+            --primary-dark: #a6146b;
+            --bg-dark: #0f0a1a;
+            --bg-darker: #0a0512;
+            --accent: #ec4899;
+            --text-light: #ffffff;
+            --text-muted: #e5e7eb;
+            --light-bg: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 10, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(217, 70, 239, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.6s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(217, 70, 239, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 2rem;
+            margin-top: 5rem;
+            background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(217, 70, 239, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 50%;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 2;
+            max-width: 45%;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            opacity: 0.9;
+        }
+
+        /* Initiatives Section */
+        .initiatives {
+            padding: 5rem 2rem;
+            background: rgba(217, 70, 239, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .initiatives-content {
+            flex: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .initiatives-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.2;
+        }
+
+        .initiatives-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .outline-button {
+            background: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+
+        .outline-button:hover {
+            background: var(--text-light);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+        }
+
+        .initiatives-image {
+            flex: 1;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .initiatives-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* FAQs Section */
+        .faqs {
+            background: var(--bg-dark);
+            padding: 5rem 2rem;
+        }
+
+        .faqs-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .faqs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            text-align: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .faq-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faq-item h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .faq-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Donors Section */
+        .donors {
+            padding: 5rem 2rem;
+            background: #f0f0f0;
+            color: #000;
+        }
+
+        .donors-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #000;
+        }
+
+        .donor-tier {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .tier-header {
+            padding: 1rem 2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        .tier-platinum {
+            background-color: #666;
+        }
+
+        .tier-gold {
+            background-color: #d4af37;
+            color: #000;
+        }
+
+        .tier-silver {
+            background-color: #c0c0c0;
+            color: #000;
+        }
+
+        .tier-bronze {
+            background-color: #cd7f32;
+        }
+
+        .donor-names {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .donor-names p {
+            color: #000;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* Resources Section */
+        .resources {
+            padding: 5rem 2rem;
+            background: rgba(217, 70, 239, 0.05);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .resources-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+        }
+
+        .resource-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 2px solid rgba(217, 70, 239, 0.3);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+
+        .resource-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .resource-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-right: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 5, 18, 0.8);
+            border-top: 1px solid rgba(217, 70, 239, 0.1);
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content,
+            .hero-image {
+                max-width: 100%;
+            }
+
+            .initiatives {
+                flex-direction: column;
+                padding: 3rem 1.5rem;
+            }
+
+            .faqs-title,
+            .donors-title,
+            .resources-title {
+                font-size: 2rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .resource-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">Yudah School of Music</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="board.html">Board</a></li>
+            <li><a href="donate.html">Donate</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Help Transform Lives Through Music</h1>
+            <p>Your support enables us to continue providing world-class musical education to marginalized youth in our community. Every donation makes a direct impact.</p>
+            <a href="#donate" class="cta-button">Donate Now</a>
+        </div>
+        <div class="hero-image">
+            <p style="font-size: 4rem;">🎵</p>
+        </div>
+    </section>
+
+    <!-- Initiatives Section -->
+    <section class="initiatives">
+        <div class="initiatives-content">
+            <h2>Our initiatives for our students and families</h2>
+            <p>Donations for Students</p>
+            <p>Money is not the only way to give! If you are able to donate functioning instruments, music stands, or repair services, please do so. If you are a musical instructor that would like to volunteer time and talent toward our mission, or a musician/vocalist that would like to participate in a future event, please share your interest.</p>
+            <div class="button-group">
+                <button class="outline-button">Instrument Donations</button>
+                <button class="outline-button">Volunteer Interest</button>
+            </div>
+        </div>
+        <div class="initiatives-image">
+            <p style="font-size: 6rem; text-align: center;">🎻</p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faqs">
+        <h2 class="faqs-title">FAQs</h2>
+        <div class="faqs-grid">
+            <div class="faq-item">
+                <div class="faq-icon">👨‍🎓</div>
+                <h3>Why support music education?</h3>
+                <p>Donating to music education for students empowers young minds by nurturing creativity and enhancing cognitive development. It provides students with opportunities to express themselves and build self-confidence, critical skills for success in life. Supporting music education also helps preserve cultural heritage and promotes a more vibrant and diverse society.</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-icon">❤️</div>
+                <h3>Where does the money go?</h3>
+                <p>Your generous support enables us to continue our vital work, which includes: Purchasing musical instruments and equipment for our students and classrooms. Supporting community outreach programs to inspire and engage local youth through music.</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-icon">🎶</div>
+                <h3>Can I donate items other than money?</h3>
+                <p>The Yudah School of Music is grateful for donations of food and snacks for performances, performance clothing, lessons, and instruments to support refugees in need. Contact us to make donations. Your generosity will make a direct and positive impact on the lives of those we serve.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donors Section -->
+    <section class="donors">
+        <h2 class="donors-title">Thank you to our Donors</h2>
+
+        <div class="donor-tier">
+            <div class="tier-header tier-platinum">PLATINUM</div>
+            <div class="donor-names">
+                <p>Solid Rock Baptist Church<br>Delaware Division of the Arts<br>Rev. Dr. Warren Rhodes & Barbara Rhodes<br>Delaware State Educators Association</p>
+                <p>Arhst Cannon Foundation<br>Revs. Rudolph White & Vernett Dowell<br>Early Music America<br>Grace United Methodist Church</p>
+            </div>
+        </div>
+
+        <div class="donor-tier">
+            <div class="tier-header tier-gold">GOLD</div>
+            <div class="donor-names">
+                <p>Rail Haus<br>Patrik Williams<br>Lauren Williams<br>Melissa Williams</p>
+                <p>Tiana Bonilla<br>Michelle Stacey<br>Barbara Crowell<br>Doris Johnson</p>
+                <p>Jeniffer Suarez<br>Claudia Plowden<br>Zhanaiyah Shockley</p>
+            </div>
+        </div>
+
+        <div class="donor-tier">
+            <div class="tier-header tier-silver">SILVER</div>
+            <div class="donor-names">
+                <p>Latoya Hall<br>Jeniffer Suarez<br>Kendra Perry</p>
+                <p>Adrianna Rodriguez<br>Dr. Wilma Mishoe<br>Georgette Class-Peters</p>
+                <p>Patricia Halliday<br>Angela Andrews</p>
+            </div>
+        </div>
+
+        <div class="donor-tier">
+            <div class="tier-header tier-bronze">BRONZE</div>
+            <div class="donor-names">
+                <p>Sonia Cortes<br>Amy Reed<br>Sharonda Heath<br>Aniya Garnett-Moore</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources">
+        <h2 class="resources-title">More Resources</h2>
+
+        <div class="resource-item">
+            <div style="display: flex; align-items: center;">
+                <div class="resource-icon">🎵</div>
+                <div class="resource-content">
+                    <h3>The Yudah School of Music: Events & Activities</h3>
+                    <p>Register (or volunteer!) for our upcoming concerts & programs.</p>
+                </div>
+            </div>
+            <button class="outline-button">Learn More</button>
+        </div>
+
+        <div class="resource-item">
+            <div style="display: flex; align-items: center;">
+                <div class="resource-icon">🎬</div>
+                <div class="resource-content">
+                    <h3>A Quick Video About our Students and Mission</h3>
+                    <p>Featuring heartfelt accounts from students and their families, this video provides a glimpse into their experiences.</p>
+                </div>
+            </div>
+            <button class="outline-button">Watch Video</button>
+        </div>
+
+        <div class="resource-item">
+            <div style="display: flex; align-items: center;">
+                <div class="resource-icon">📋</div>
+                <div class="resource-content">
+                    <h3>Questionnaire Form for Volunteering</h3>
+                    <p>More volunteer opportunities with The Yudah School of Music.</p>
+                </div>
+            </div>
+            <button class="outline-button">Read More</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>123 Anywhere St.<br>Any City<br>ST 12345<br>Country<br><br>Telephone: (123) 456-7890<br>Mobile: (123) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h4>Office Hours</h4>
+                <p>Monday: 8am – 7pm<br>Tuesday: 8am – 5pm<br>Wednesday: 8am – 5pm<br>Thursday: 8am – 7pm<br>Friday: 8am – 5pm</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="index.html" style="color: var(--text-muted); text-decoration: none;">Home</a><br><a href="index.html#mission" style="color: var(--text-muted); text-decoration: none;">About</a><br><a href="board.html" style="color: var(--text-muted); text-decoration: none;">Board</a><br><a href="index.html#contact" style="color: var(--text-muted); text-decoration: none;">Contact</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.faq-item, .resource-item, .donor-tier').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
