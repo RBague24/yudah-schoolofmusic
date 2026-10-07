@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Yudah School of Music</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5B2D7F;
+            --primary-dark: #3d1a52;
+            --primary-light: #8B5FA8;
+            --bg-light: #ffffff;
+            --bg-secondary: #f8f6f4;
+            --bg-purple: #f3f0f8;
+            --bg-purple-medium: #6B4B9F;
+            --bg-purple-deep: #4A2D6B;
+            --accent: #7B4B9F;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --text-light: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(91, 45, 127, 0.12);
+            --shadow-lg: 0 12px 32px rgba(91, 45, 127, 0.18);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.6s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: var(--primary);
+            transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 1px;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 5rem;
+            background: linear-gradient(135deg, rgba(243, 240, 248, 0.8) 0%, rgba(248, 246, 244, 0.8) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(91, 45, 127, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(91, 45, 127, 0.05) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            font-weight: 500;
+        }
+
+        /* Section */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section:nth-child(odd) {
+            background: var(--bg-light);
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-purple-deep);
+        }
+
+        .section:nth-child(even) .section-title {
+            color: white;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-weight: 800;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.97);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 3.5rem;
+            animation: fadeInUp 0.8s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .section:nth-child(even) .content-box {
+            background: rgba(255, 255, 255, 0.96);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .content-box p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .content-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background: var(--bg-purple-medium);
+            border-left: 4px solid var(--text-light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .highlight h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .highlight p {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .section:nth-child(odd) .highlight {
+            background: var(--bg-purple);
+            border-left: 4px solid var(--primary);
+        }
+
+        .section:nth-child(odd) .highlight h4 {
+            color: var(--primary);
+        }
+
+        .section:nth-child(odd) .highlight p {
+            color: var(--text-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            border-top: none;
+            padding: 3.5rem 2rem;
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section {
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-section p {
+            font-size: 0.85rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .music-note {
+            position: fixed;
+            font-size: 1.5rem;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+
+            nav ul {
+                gap: 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .content-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-content {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Musical Note Placeholders -->
+    <div class="music-note" style="top: 10%; left: 5%;">🎵</div>
+    <div class="music-note" style="top: 25%; right: 8%;">♪</div>
+    <div class="music-note" style="top: 40%; left: 7%;">🎶</div>
+    <div class="music-note" style="top: 55%; right: 10%;">♫</div>
+    <div class="music-note" style="top: 70%; left: 10%;">🎵</div>
+    <div class="music-note" style="top: 85%; right: 5%;">♪</div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">Yudah School of Music</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="board.html">Board</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="donate.html">Donate</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Story</h1>
+            <p>Building equitable access to music education in Delaware</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section">
+        <h2 class="section-title">Our Foundation</h2>
+        <div class="content-box">
+            <h3>A Mission Born From Passion</h3>
+            <p>The Yudah School of Music was founded in 2025 by Rasháwn King, a 25-year-old educator dedicated to transforming lives through music. Recognizing the inequitable access to quality music education in Delaware, King established Yudah to serve approximately 50 students—primarily Black and Latino elementary and middle schoolers from underserved communities in Wilmington and Dover.</p>
+            <p>Every student receives completely free tuition, removing financial barriers and ensuring that background and socioeconomic status never determine a child's access to exceptional musical training.</p>
+            <div class="highlight">
+                <h4>🎵 Core Philosophy</h4>
+                <p>At Yudah, we believe anyone can love music. We use music as a unifier within the community, breaking down barriers and creating pathways for young people to discover their potential, express themselves, and build confidence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section">
+        <h2 class="section-title">Our Programs</h2>
+        <div class="content-box">
+            <h3>Comprehensive Music Education</h3>
+            <p><strong>Primary Focus:</strong> Yudah specializes in strings and piano instruction, with classes held at Solid Rock Baptist Church in Dover and Union American Methodist Episcopal in Wilmington. Rasháwn King personally teaches most lessons, ensuring personalized attention and mentorship.</p>
+
+            <div class="highlight">
+                <h4>🎸 Classical & Cultural Training</h4>
+                <p>Beyond classical music fundamentals, Yudah incorporates Hispanic musical traditions including salsa and cumbia, connecting students to their cultural heritage while building musical excellence.</p>
+            </div>
+
+            <p><strong>Landmark Performances:</strong> The school recently presented Handel's <em>Messiah</em> in December 2025 using period instruments and historically informed performance practices—a groundbreaking achievement featuring Baroque bows and authentic A=415 pitch. This performance showcased not only the musicianship of our students but also their deep engagement with classical traditions.</p>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="section">
+        <h2 class="section-title">Creating Impact</h2>
+        <div class="content-box">
+            <h3>Community-Centered Approach</h3>
+            <p>Yudah operates on a lean budget of approximately $60,000+ annually, sustained through grants, fundraising, and generous donations from supporters. Despite limited resources, the organization has created something transformative for its students and their families.</p>
+
+            <div class="highlight">
+                <h4>🎭 Making Music Accessible</h4>
+                <p>The school offers free public concerts to eliminate financial barriers for families. This commitment ensures that quality music experiences are available to everyone in the community, regardless of their ability to pay.</p>
+            </div>
+
+            <p>Every decision at Yudah is guided by the belief that music education should be a right, not a privilege. By breaking down barriers—financial, cultural, and social—we're creating pathways for young people to unlock their potential and discover their voices.</p>
+        </div>
+    </section>
+
+    <!-- Press Section -->
+    <section class="section">
+        <h2 class="section-title">In the Media</h2>
+        <div class="content-box">
+            <p><strong>Featured in Early Music America:</strong> "Making a Difference in Delaware" explores how Yudah School of Music is transforming music education in underserved communities.</p>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">Learn more about our work and mission at <a href="https://www.earlymusicamerica.org/web-articles/making-a-difference-in-delaware/" target="_blank" style="color: var(--primary); text-decoration: underline;">Early Music America</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>123 Anywhere St.<br>Any City<br>ST 12345<br>Country<br><br>Telephone: (123) 456-7890<br>Mobile: (123) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h4>Office Hours</h4>
+                <p>Monday: 8am – 7pm<br>Tuesday: 8am – 5pm<br>Wednesday: 8am – 5pm<br>Thursday: 8am – 7pm<br>Friday: 8am – 5pm</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="board.html">Board</a><br><a href="donate.html">Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

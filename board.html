@@ -12,19 +12,22 @@
         }
 
         :root {
-            --primary: #d946ef;
-            --primary-dark: #a6146b;
-            --bg-dark: #0f0a1a;
-            --bg-darker: #0a0512;
-            --accent: #ec4899;
-            --text-light: #ffffff;
-            --text-muted: #e5e7eb;
+            --primary: #5B2D7F;
+            --primary-dark: #3d1a52;
+            --primary-light: #8B5FA8;
+            --bg-light: #ffffff;
+            --bg-secondary: #f8f6f4;
+            --bg-purple: #f3f0f8;
+            --accent: #7B4B9F;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --border-color: #e0e0e0;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-light);
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            color: var(--text-dark);
+            background: var(--bg-light);
             overflow-x: hidden;
         }
 
@@ -34,9 +37,9 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(15, 10, 26, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(217, 70, 239, 0.1);
+            border-bottom: 1px solid var(--border-color);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -47,11 +50,8 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
+            color: var(--primary);
+            text-decoration: none;
         }
 
         nav ul {
@@ -62,7 +62,7 @@
         }
 
         nav a {
-            color: var(--text-light);
+            color: var(--text-dark);
             text-decoration: none;
             font-size: 0.95rem;
             transition: color 0.3s ease;
@@ -93,7 +93,7 @@
             position: relative;
             overflow: hidden;
             padding-top: 5rem;
-            background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(243, 240, 248, 1) 0%, rgba(248, 246, 244, 1) 100%);
         }
 
         .hero::before {
@@ -103,8 +103,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(217, 70, 239, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(91, 45, 127, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(91, 45, 127, 0.05) 0%, transparent 50%);
             animation: float 8s ease-in-out infinite;
         }
 
@@ -124,10 +124,7 @@
             font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: 900;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, #fbbf24 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             letter-spacing: -2px;
             line-height: 1.2;
         }
@@ -149,10 +146,7 @@
             font-size: clamp(2rem, 5vw, 3.5rem);
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             font-weight: 800;
             animation: fadeInUp 0.8s ease;
         }
@@ -181,8 +175,8 @@
             border-radius: 15px;
             overflow: hidden;
             margin-bottom: 1.5rem;
-            background: rgba(217, 70, 239, 0.12);
-            border: 1px solid rgba(217, 70, 239, 0.3);
+            background: var(--bg-purple);
+            border: 1px solid var(--border-color);
         }
 
         .director-image img {
@@ -221,7 +215,7 @@
             line-height: 1.7;
             color: var(--text-muted);
             font-style: italic;
-            background: rgba(217, 70, 239, 0.06);
+            background: var(--bg-purple);
             border-left: 3px solid var(--primary);
             padding: 1.5rem;
             border-radius: 8px;
@@ -229,26 +223,51 @@
 
         /* Footer */
         footer {
-            background: rgba(10, 5, 18, 0.8);
-            border-top: 1px solid rgba(217, 70, 239, 0.1);
+            background: var(--primary);
+            border-top: 1px solid var(--border-color);
             padding: 3rem 2rem;
-            text-align: center;
-            color: var(--text-muted);
+            color: white;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section {
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-section p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.85);
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
         }
 
         .footer-logo {
             font-size: 1.3rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
         }
 
         .footer-links {
@@ -268,6 +287,14 @@
 
         .footer-links a:hover {
             color: var(--primary);
+        }
+
+        .music-note {
+            position: fixed;
+            font-size: 1.5rem;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
         }
 
         /* Animations */
@@ -327,12 +354,22 @@
     </style>
 </head>
 <body>
+    <!-- Musical Note Placeholders -->
+    <div class="music-note" style="top: 10%; left: 5%;">🎵</div>
+    <div class="music-note" style="top: 25%; right: 8%;">♪</div>
+    <div class="music-note" style="top: 40%; left: 7%;">🎶</div>
+    <div class="music-note" style="top: 55%; right: 10%;">♫</div>
+    <div class="music-note" style="top: 70%; left: 10%;">🎵</div>
+    <div class="music-note" style="top: 85%; right: 5%;">♪</div>
+
     <!-- Navigation -->
     <nav>
         <a href="index.html" class="logo">Yudah School of Music</a>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="board.html">Board</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="donate.html">Donate</a></li>
         </ul>
     </nav>
@@ -378,14 +415,18 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">Yudah School of Music</div>
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="index.html#mission">Home</a>
-                <a href="index.html#classes">Classes</a>
-                <a href="index.html#contact">Contact</a>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>123 Anywhere St.<br>Any City<br>ST 12345<br>Country<br><br>Telephone: (123) 456-7890<br>Mobile: (123) 456-7890</p>
             </div>
-            <p>&copy; 2024 Yudah School of Music. All rights reserved.</p>
+            <div class="footer-section">
+                <h4>Office Hours</h4>
+                <p>Monday: 8am – 7pm<br>Tuesday: 8am – 5pm<br>Wednesday: 8am – 5pm<br>Thursday: 8am – 7pm<br>Friday: 8am – 5pm</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="index.html" style="color: rgba(255, 255, 255, 0.85); text-decoration: none;">Home</a><br><a href="index.html#mission" style="color: rgba(255, 255, 255, 0.85); text-decoration: none;">Home</a><br><a href="board.html" style="color: rgba(255, 255, 255, 0.85); text-decoration: none;">Board</a><br><a href="index.html#contact" style="color: rgba(255, 255, 255, 0.85); text-decoration: none;">Contact</a></p>
+            </div>
         </div>
     </footer>
 
