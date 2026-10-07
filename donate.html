@@ -618,6 +618,72 @@
             box-shadow: 0 8px 20px rgba(91, 45, 127, 0.32);
         }
 
+        /* Payment Options Styling */
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .payment-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(91, 45, 127, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .payment-option-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-option-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .payment-option-info {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .payment-option-button {
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .payment-option-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(91, 45, 127, 0.24);
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -739,7 +805,7 @@
         <div class="hero-content">
             <h1>Help Transform Lives Through Music</h1>
             <p>Your support enables us to continue providing world-class musical education to marginalized youth in our community. Every donation makes a direct impact.</p>
-            <button onclick="openModal('donateModal')" class="cta-button donate-now">Donate Now</button>
+            <button onclick="openModal('paymentModal')" class="cta-button donate-now">Donate Now</button>
         </div>
         <div class="hero-image">
             <p>🎵</p>
@@ -861,29 +927,33 @@
     </section>
 
     <!-- Modals -->
-    <div id="donateModal" class="modal">
+    <div id="paymentModal" class="modal">
         <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('donateModal')">&times;</button>
-            <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Make a Donation</h2>
-            <form class="modal-form">
-                <div class="form-group">
-                    <label for="donor-name">Your Name *</label>
-                    <input type="text" id="donor-name" name="name" required>
+            <button class="close-modal" onclick="closeModal('paymentModal')">&times;</button>
+            <h2 style="margin-bottom: 0.5rem; color: var(--primary);">Choose Your Payment Method</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; text-align: center;">We at The Yudah School of Music, INC. would like to thank you for any contribution you make to our organization. Your contribution helps historically marginalized youth take their musical training to a level that otherwise may not be possible. <br><br>We are honored that you would consider supporting us in creating an organization where youth in the Delaware community can realize their fullest potentials.<br><br>Thank you again and may God bless you!</p>
+            <div class="payment-options">
+                <div class="payment-option">
+                    <div class="payment-option-icon">💳</div>
+                    <div class="payment-option-name">Square</div>
+                    <div class="payment-option-info">Fast and secure payments</div>
+                    <a href="https://square.link/u/pyLQGifz" target="_blank" class="payment-option-button">Donate via Square</a>
                 </div>
-                <div class="form-group">
-                    <label for="donor-email">Email Address *</label>
-                    <input type="email" id="donor-email" name="email" required>
+
+                <div class="payment-option">
+                    <div class="payment-option-icon">📱</div>
+                    <div class="payment-option-name">Venmo</div>
+                    <div class="payment-option-info">Send payment to<br><strong>@Yudahschoolofmusic</strong></div>
+                    <a href="https://www.venmo.com/u/Yudahschoolofmusic" target="_blank" class="payment-option-button">Donate via Venmo</a>
                 </div>
-                <div class="form-group">
-                    <label for="donation-amount">Donation Amount *</label>
-                    <input type="number" id="donation-amount" name="amount" min="1" placeholder="$" required>
+
+                <div class="payment-option">
+                    <div class="payment-option-icon">🏦</div>
+                    <div class="payment-option-name">Zelle</div>
+                    <div class="payment-option-info">Bank transfer to<br><strong>yudahschoolofmusic<br>@outlook.com</strong></div>
+                    <button class="payment-option-button" onclick="copyToClipboard('yudahschoolofmusic@outlook.com'); closeModal('paymentModal');">Copy Email & Close</button>
                 </div>
-                <div class="form-group">
-                    <label for="donor-message">Message (Optional)</label>
-                    <textarea id="donor-message" name="message" placeholder="Tell us why you're supporting Yudah School of Music..."></textarea>
-                </div>
-                <button type="submit" class="form-submit-btn">Submit Donation</button>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -975,6 +1045,23 @@
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = 'auto';
+        }
+
+        // Copy to Clipboard Function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Email copied to clipboard! You can now paste it into your Zelle app.');
+            }).catch(err => {
+                console.log('Copy failed:', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Email copied to clipboard! You can now paste it into your Zelle app.');
+            });
         }
 
         // Close modal when clicking outside of it
