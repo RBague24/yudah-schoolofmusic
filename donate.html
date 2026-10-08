@@ -66,6 +66,18 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-wrapper img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
         .logo {
             font-size: 1.3rem;
             font-weight: 800;
@@ -497,6 +509,34 @@
             color: white;
         }
 
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+            transform: translateY(-2px);
+        }
+
         .music-note {
             position: fixed;
             font-size: 1.5rem;
@@ -790,7 +830,10 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo">Yudah School of Music</a>
+        <div class="logo-wrapper">
+            <img src="yudahlogo-removebg-preview.png" alt="Yudah School of Music Logo">
+            <a href="index.html" class="logo">Yudah School of Music</a>
+        </div>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="board.html">Board</a></li>
@@ -883,7 +926,7 @@
         <div class="donor-tier">
             <div class="tier-header tier-bronze">BRONZE</div>
             <div class="donor-names">
-                <p>Individual donors who support our mission at all levels. Every contribution matters.</p>
+                <p>Sonia Cortes <br>Amy Reed <br> Sharonda Heath <br> Aniya Garnett-Moore</p>
             </div>
         </div>
     </section>
@@ -1031,6 +1074,13 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <p><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="board.html">Board</a><br><a href="donate.html">Donate</a><br><a href="events.html">Events</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61570940452752" target="_blank" aria-label="Facebook">f</a>
+                    <a href="https://www.instagram.com/yudahschoolofmusic?stkn=MWNlZHhzZzYzMjF5OQ%3D%3D" target="_blank" aria-label="Instagram">📷</a>
+                </div>
             </div>
         </div>
     </footer>
